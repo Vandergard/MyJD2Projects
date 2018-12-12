@@ -1,9 +1,12 @@
 package by.pvt.pojo;
 
 public class User {
+
     private long id;
+
     private String userName;
-    private String email;
+
+    private String userEmail;
     private UserDetails userDetails;
 
     public long getId() {
@@ -22,12 +25,12 @@ public class User {
         this.userName = userName;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public UserDetails getUserDetails() {

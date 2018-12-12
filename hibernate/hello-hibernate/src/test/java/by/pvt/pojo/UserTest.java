@@ -1,11 +1,10 @@
 package by.pvt.pojo;
 
 
-import static org.junit.Assert.*;
-
+//import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertTrue;
 import org.hibernate.Session;
 import org.junit.*;
-
 import by.pvt.util.HibernateUtil;
 import java.sql.Timestamp;
 
@@ -24,12 +23,12 @@ public class UserTest {
         User user = new User();
 
         user.setUserName("User");
-        user.setEmail("mail@mail.ru");
+        user.setUserEmail("mail@mail.ru");
 
         UserDetails userDetails = new UserDetails();
-        userDetails.setUserPassword("password");
+        userDetails.setPassword("password");
 
-        userDetails.setLoginAttemps(3);
+        userDetails.setLoginAttempts(3);
         userDetails.setExpiredDate(new Timestamp(System.currentTimeMillis()));
 
         user.setUserDetails(userDetails);
@@ -41,10 +40,19 @@ public class UserTest {
             session.saveOrUpdate(userDetails);
             session.getTransaction().commit();
             assertTrue(user.getId()>0);
-            
+            assertTrue(userDetails.getId()>0);
+            assertTrue(user.getId() == userDetails.getId());
         }
         catch (Exception e){
             e.printStackTrace();
+        }
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        if(session !=null && session.isOpen()){
+            session.close();
+            session = null;
         }
     }
 

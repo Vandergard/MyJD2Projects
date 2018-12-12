@@ -1,18 +1,17 @@
 package by.pvt.dao;
 
-
+import static junit.framework.Assert.*;
 import by.pvt.pojo.User;
 import by.pvt.pojo.UserDetails;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.FixMethodOrder;
-import org.junit.runners.MethodSorters;
+import org.junit.runners.*;
 
 import java.sql.Timestamp;
 
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.Assert.*;
+
 
 @FixMethodOrder (MethodSorters.NAME_ASCENDING)
 public class UserDaoImplTest {
@@ -29,12 +28,12 @@ public class UserDaoImplTest {
     public void step1_createNewUser(){
         User user = new User();
         user.setUserName("User");
-        user.setEmail("mail@mail.ru");
+        user.setUserEmail("mail@mail.ru");
 
         UserDetails userDetails = new UserDetails();
-        userDetails.setUserPassword("password");
+        userDetails.setPassword("password");
 
-        userDetails.setLoginAttemps(3);
+        userDetails.setLoginAttempts(3);
         userDetails.setExpiredDate(new Timestamp(System.currentTimeMillis()));
 
         user.setUserDetails(userDetails);
@@ -53,7 +52,7 @@ public class UserDaoImplTest {
 
         assertNotNull(user);
         assertNotNull(user.getUserDetails());
-        System.out.println(user.getEmail() +" "+user.getUserName());
+        System.out.println(user.getUserEmail() +" "+user.getUserName());
 
     }
 
@@ -61,17 +60,19 @@ public class UserDaoImplTest {
     @Test
     public void step3_update(){
         User user = userDao.load(1L);
+
         assertTrue("User".equals(user.getUserName()));
-        assertTrue("password".equals(user.getUserDetails().getUserPassword()));
+        assertTrue("password".equals(user.getUserDetails().getPassword()));
 
         user.setUserName("New_User");
-        user.getUserDetails().setUserPassword("New_Password");
+        user.getUserDetails().setPassword("New_Password");
+
         userDao.saveOrUpdate(user);
 
 
         User user2 = userDao.load(1L);
         assertTrue(user2.getUserName().equals("New_User"));
-        assertTrue("New_Password".equals(user2.getUserDetails().getUserPassword()));
+        assertTrue("New_Password".equals(user2.getUserDetails().getPassword()));
 
     }
 
