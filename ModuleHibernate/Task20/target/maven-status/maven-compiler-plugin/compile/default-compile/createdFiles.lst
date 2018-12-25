@@ -1,0 +1,8 @@
+dao/DaoImpl.class
+pojo/Job.class
+util/HibernateUtil.class
+pojo/Fingerprint.class
+dao/DaoImplPerson.class
+pojo/Adress.class
+pojo/Person.class
+CustomPhysicalNamingStrategy.class
