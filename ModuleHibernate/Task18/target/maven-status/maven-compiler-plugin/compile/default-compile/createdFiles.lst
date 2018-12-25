@@ -1,0 +1,4 @@
+pojo/Job.class
+util/HibernateUtil.class
+dao/DaoImplPerson.class
+pojo/Person.class
