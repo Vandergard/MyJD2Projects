@@ -1,16 +1,28 @@
 package by.pvt.pojo;
 
+import org.junit.ClassRule;
+
+import javax.persistence.*;
+
 /**
  *
  */
+@Entity
 public class Company {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Column
     private String companyName;
+    @Column
     private String siteUrl;
 
+    @Embedded
     private Address homeAddress;
+
+    @Embedded
     private Address legalAddress;
 
     public long getId() {

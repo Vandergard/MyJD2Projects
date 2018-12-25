@@ -34,4 +34,8 @@ public class Worker extends Person {
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
+
+    public String toString(){
+        return super.toString() + "salary"+ salary;
+    }
 }

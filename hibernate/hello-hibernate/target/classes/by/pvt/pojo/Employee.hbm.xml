@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?><!DOCTYPE hibernate-mapping PUBLIC ""
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="by.pvt.pojo">
+
+    <class name="Employee">
+        <id name="id">
+            <generator class="increment"/>
+        </id>
+        <property name="firstName"/>
+        <property name="lastName"/>
+        <property name="cellPhone"/>
+
+        <many-to-one name="department" class="Department"  cascade="save-update"/>
+        <one-to-one name="employeeDetails" class="EmployeeDetails" cascade="all"/>
+
+        <set name="meetings" table="employee_meeting">
+            <key column="employee"/>
+            <many-to-many class="Meeting" column="meeting"/>
+        </set>
+
+    </class>
+</hibernate-mapping>
