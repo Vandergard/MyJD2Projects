@@ -6,6 +6,7 @@
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/TokenizedCardType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/ChannelRefType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/dao/BaseDaoImpl.java
+/home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/dao/PaymentTypeDaoImpl.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/BankAccountDebitType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/api/RefundApi.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/EntityRefType.java
@@ -14,6 +15,7 @@
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/TimePeriodType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/CashType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/api/ApiException.java
+/home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/service/PaymentTypeServiceImpl.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/DigitalWalletType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/api/PaymentApi.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/api/ApiResponseMessage.java
@@ -26,6 +28,7 @@
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/PaymentType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/CheckType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/configuration/HomeController.java
+/home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/BasePOJO.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/Swagger2SpringBoot.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/PaymentMethodType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/RelatedPartyRefType.java

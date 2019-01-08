@@ -1,6 +1,7 @@
 package io.swagger.api;
 
-import io.swagger.service.BaseServiceImpl;
+import io.swagger.model.MoneyType;
+import io.swagger.service.PaymentTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.threeten.bp.OffsetDateTime;
 import io.swagger.model.PaymentRequestType;
@@ -37,7 +38,7 @@ public class PaymentApiController implements PaymentApi {
 
     // Spring автоматически создает объект подходящий интерфейсу и дает на него ссылку
     @Autowired
-    private BaseServiceImpl<PaymentType> paymentTypeBaseService;
+    private PaymentTypeServiceImpl<PaymentType> paymentTypeBaseService;
 
 
     @org.springframework.beans.factory.annotation.Autowired
@@ -46,19 +47,28 @@ public class PaymentApiController implements PaymentApi {
         this.request = request;
     }
 
-    public ResponseEntity<Void> createPayment(@ApiParam(value = "Payment that is created" ,required=true )  @Valid @RequestBody PaymentRequestType paymentRequest) {
+    public ResponseEntity<PaymentType> createPayment(@ApiParam(value = "Payment that is created" ,required=true )  @Valid @RequestBody PaymentRequestType paymentRequest) {
         String accept = request.getHeader("Accept");
+        paymentTypeBaseService.create(List.of(
+                paymentType("1"),
+                paymentType("2"),
+                paymentType("3"),
+                paymentType("4"),
+                paymentType("5")
+        ));
 
 
-        return new ResponseEntity<Void>(HttpStatus.NOT_IMPLEMENTED);
+        return new ResponseEntity<PaymentType>(HttpStatus.OK);
     }
 
     public ResponseEntity<PaymentType> retrievePayment(@ApiParam(value = "ID of the payment that needs to be fetched",required=true) @PathVariable("paymentId") String paymentId) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             try {
-                return new ResponseEntity<PaymentType>(objectMapper.readValue("{  \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"amount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"authorizationCode\" : \"authorizationCode\",  \"channel\" : {    \"name\" : \"name\",    \"description\" : \"description\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"description\" : \"description\",  \"payer\" : {    \"role\" : \"role\",    \"name\" : \"name\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"totalAmount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"paymentItem\" : [ {    \"totalAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"amount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"item\" : {      \"name\" : \"name\",      \"description\" : \"description\",      \"id\" : \"id\",      \"href\" : \"href\",      \"type\" : \"type\"    },    \"taxAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    }  }, {    \"totalAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"amount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"item\" : {      \"name\" : \"name\",      \"description\" : \"description\",      \"id\" : \"id\",      \"href\" : \"href\",      \"type\" : \"type\"    },    \"taxAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    }  } ],  \"name\" : \"name\",  \"paymentMethod\" : [ {    \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",    \"validFor\" : {      \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",      \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"    },    \"authorizationCode\" : \"authorizationCode\",    \"name\" : \"name\",    \"description\" : \"description\",    \"details\" : \"{}\",    \"id\" : \"id\",    \"href\" : \"href\",    \"relatedParty\" : [ {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    }, {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    } ],    \"type\" : \"cash\",    \"preferred\" : true,    \"status\" : \"status\"  }, {    \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",    \"validFor\" : {      \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",      \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"    },    \"authorizationCode\" : \"authorizationCode\",    \"name\" : \"name\",    \"description\" : \"description\",    \"details\" : \"{}\",    \"id\" : \"id\",    \"href\" : \"href\",    \"relatedParty\" : [ {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    }, {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    } ],    \"type\" : \"cash\",    \"preferred\" : true,    \"status\" : \"status\"  } ],  \"correlatorId\" : \"correlatorId\",  \"id\" : \"id\",  \"href\" : \"href\",  \"paymentDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"taxAmount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"account\" : {    \"name\" : \"name\",    \"description\" : \"description\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"status\" : \"status\"}", PaymentType.class), HttpStatus.NOT_IMPLEMENTED);
-            } catch (IOException e) {
+
+                return new ResponseEntity<PaymentType>(paymentTypeBaseService.findId(paymentId), HttpStatus.OK);
+//                return new ResponseEntity<PaymentType>(objectMapper.readValue("{  \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"amount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"authorizationCode\" : \"authorizationCode\",  \"channel\" : {    \"name\" : \"name\",    \"description\" : \"description\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"description\" : \"description\",  \"payer\" : {    \"role\" : \"role\",    \"name\" : \"name\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"totalAmount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"paymentItem\" : [ {    \"totalAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"amount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"item\" : {      \"name\" : \"name\",      \"description\" : \"description\",      \"id\" : \"id\",      \"href\" : \"href\",      \"type\" : \"type\"    },    \"taxAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    }  }, {    \"totalAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"amount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"item\" : {      \"name\" : \"name\",      \"description\" : \"description\",      \"id\" : \"id\",      \"href\" : \"href\",      \"type\" : \"type\"    },    \"taxAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    }  } ],  \"name\" : \"name\",  \"paymentMethod\" : [ {    \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",    \"validFor\" : {      \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",      \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"    },    \"authorizationCode\" : \"authorizationCode\",    \"name\" : \"name\",    \"description\" : \"description\",    \"details\" : \"{}\",    \"id\" : \"id\",    \"href\" : \"href\",    \"relatedParty\" : [ {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    }, {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    } ],    \"type\" : \"cash\",    \"preferred\" : true,    \"status\" : \"status\"  }, {    \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",    \"validFor\" : {      \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",      \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"    },    \"authorizationCode\" : \"authorizationCode\",    \"name\" : \"name\",    \"description\" : \"description\",    \"details\" : \"{}\",    \"id\" : \"id\",    \"href\" : \"href\",    \"relatedParty\" : [ {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    }, {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    } ],    \"type\" : \"cash\",    \"preferred\" : true,    \"status\" : \"status\"  } ],  \"correlatorId\" : \"correlatorId\",  \"id\" : \"id\",  \"href\" : \"href\",  \"paymentDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"taxAmount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"account\" : {    \"name\" : \"name\",    \"description\" : \"description\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"status\" : \"status\"}", PaymentType.class), HttpStatus.NOT_IMPLEMENTED);
+            } catch (Exception e) {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<PaymentType>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
@@ -84,6 +94,15 @@ public class PaymentApiController implements PaymentApi {
         }
 
         return new ResponseEntity<List<PaymentType>>(HttpStatus.NOT_IMPLEMENTED);
+    }
+
+    public static PaymentType paymentType(String prefix) {
+        PaymentType paymentType = new PaymentType();
+        paymentType.setDescription("Description" + prefix);
+        paymentType.setName("Name" + prefix);
+        paymentType.setHref("localhost/" + prefix);
+        paymentType.setStatus("Status" + prefix);
+        return paymentType;
     }
 
 }

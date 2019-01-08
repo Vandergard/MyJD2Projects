@@ -28,68 +28,68 @@ import javax.validation.constraints.*;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-22T13:14:44.496+03:00")
-@Entity
+//@Entity
 public class PaymentRequestType extends BasePOJO  {
 
-  @Column
+//  @Column
   @JsonProperty("correlatorId")
   private String correlatorId = null;
 
-  @Column
+//  @Column
   @JsonProperty("paymentDate")
   private OffsetDateTime paymentDate = null;
 
-  @Column
+//  @Column
   @JsonProperty("name")
   private String name = null;
 
-  @Column
+//  @Column
   @JsonProperty("description")
   private String description = null;
 
-  @Column
+//  @Column
   @JsonProperty("authorizationCode")
   private String authorizationCode = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("amount")
   private MoneyType amount = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("taxAmount")
   private MoneyType taxAmount = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("totalAmount")
   private MoneyType totalAmount = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("channel")
   private ChannelRefType channel = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("account")
   private AccountRefType account = null;
 
-  @OneToMany
+//  @OneToMany
   @JsonProperty("paymentItem")
   @Valid
   private List<PaymentItemType> paymentItem = null;
 
-  @OneToMany
+//  @OneToMany
   @JsonProperty("paymentMethod")
   @Valid
   private List<PaymentMethodType> paymentMethod = null;
 
-  @Column
+//  @Column
   @JsonProperty("status")
   private String status = null;
 
-  @Column
+//  @Column
   @JsonProperty("statusDate")
   private OffsetDateTime statusDate = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("payer")
   private RelatedPartyRefType payer = null;
 

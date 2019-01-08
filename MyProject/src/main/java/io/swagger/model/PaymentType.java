@@ -14,6 +14,7 @@ import io.swagger.model.RelatedPartyRefType;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.context.annotation.Configuration;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
@@ -30,8 +31,9 @@ import javax.validation.constraints.*;
 
 @Entity
 public class PaymentType   {
-  @Id
-  @GeneratedValue (strategy = GenerationType.AUTO)
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @JsonProperty("id")
   private String id = null;
 
@@ -118,7 +120,7 @@ public class PaymentType   {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "")
-  @NotNull
+//  @NotNull
 
 
   public String getId() {
@@ -139,7 +141,7 @@ public class PaymentType   {
    * @return href
   **/
   @ApiModelProperty(required = true, value = "")
-  @NotNull
+//  @NotNull
 
 
   public String getHref() {
@@ -180,7 +182,7 @@ public class PaymentType   {
    * @return paymentDate
   **/
   @ApiModelProperty(required = true, value = "")
-  @NotNull
+//  @NotNull
 
   @Valid
 
@@ -304,7 +306,7 @@ public class PaymentType   {
    * @return totalAmount
   **/
   @ApiModelProperty(required = true, value = "")
-  @NotNull
+//  @NotNull
 
   @Valid
 

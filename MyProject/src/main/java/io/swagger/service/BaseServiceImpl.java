@@ -9,20 +9,10 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @Service
-public class BaseServiceImpl<T> {
+public abstract class BaseServiceImpl<T> {
 
     private static Logger log = Logger.getLogger(BaseServiceImpl.class.getName());
 
-
-
-
-    @Autowired
-    private BaseDaoImpl<PaymentType> paymentTypeBaseDao;
-
-    public List<T> list(){
-
-        log.info("paymentTypeBaseDao: "+ paymentTypeBaseDao);
-        return (List<T>)paymentTypeBaseDao.find();
-    }
+    public abstract List<T> list();
 
 }

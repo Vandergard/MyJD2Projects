@@ -35,7 +35,7 @@ public interface PaymentApi {
         produces = { "application/json" }, 
         consumes = { "application/json" },
         method = RequestMethod.POST)
-    ResponseEntity<Void> createPayment(@ApiParam(value = "Payment that is created" ,required=true )  @Valid @RequestBody PaymentRequestType paymentRequest);
+    ResponseEntity<PaymentType> createPayment(@ApiParam(value = "Payment that is created" ,required=true )  @Valid @RequestBody PaymentRequestType paymentRequest);
 
 
     @ApiOperation(value = "Retrieve a payment", nickname = "retrievePayment", notes = "", response = PaymentType.class, tags={ "payments", })

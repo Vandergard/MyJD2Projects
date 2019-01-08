@@ -8,11 +8,13 @@ io/swagger/model/RefundRequestType$StatusEnum.class
 io/swagger/model/PaymentItemType.class
 io/swagger/model/TokenizedCardType$TypeEnum.class
 io/swagger/api/ApiOriginFilter.class
+io/swagger/service/PaymentTypeServiceImpl.class
 io/swagger/configuration/CustomInstantDeserializer$5.class
 io/swagger/api/AccountApiController.class
 io/swagger/dao/BaseDaoImpl.class
 io/swagger/Swagger2SpringBoot$ExitException.class
 io/swagger/configuration/HomeController.class
+io/swagger/model/BasePOJO.class
 io/swagger/model/PaymentMethodType.class
 io/swagger/model/BankAccountTransferType.class
 io/swagger/model/DigitalWalletType.class
@@ -45,6 +47,7 @@ io/swagger/RFC3339DateFormat.class
 io/swagger/model/PaymentRequestType.class
 io/swagger/model/RelatedPartyRefType.class
 io/swagger/configuration/CustomInstantDeserializer$8.class
+io/swagger/dao/PaymentTypeDaoImpl.class
 io/swagger/model/EntityRefType.class
 io/swagger/api/RefundApiController.class
 io/swagger/model/CheckType.class
