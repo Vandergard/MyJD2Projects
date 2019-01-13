@@ -24,6 +24,7 @@ import javax.validation.constraints.*;
 import javax.validation.Valid;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-22T13:14:44.496+03:00")
 
@@ -102,6 +103,11 @@ public class PaymentApiController implements PaymentApi {
         paymentType.setName("Name" + prefix);
         paymentType.setHref("localhost/" + prefix);
         paymentType.setStatus("Status" + prefix);
+        paymentType.setPaymentDate(OffsetDateTime.now());
+        MoneyType moneyType = new MoneyType();
+        moneyType.amount(new BigDecimal(123));
+        moneyType.units("euro");
+        paymentType.setTotalAmount(moneyType);
         return paymentType;
     }
 

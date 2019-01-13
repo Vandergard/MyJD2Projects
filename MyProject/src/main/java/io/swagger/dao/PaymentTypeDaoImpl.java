@@ -28,14 +28,15 @@ public class PaymentTypeDaoImpl<T> extends BaseDaoImpl{
         return openSession().createQuery("from PaymentType").list();
     }
 
+//    @Override
     public void save(T item) {
         openSession().saveOrUpdate(item);
     }
 
 
-
+    @Override
     public PaymentType get(Serializable id){
-        return (PaymentType)openSession().get(tClass, id);
+        return (PaymentType) openSession().get(tClass, id);
     }
 
 }

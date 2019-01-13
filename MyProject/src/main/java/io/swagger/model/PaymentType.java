@@ -15,6 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.springframework.context.annotation.Configuration;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
@@ -63,17 +65,14 @@ public class PaymentType   {
 
 
   @OneToOne
-//  @OneToMany(mappedBy = "paymenttype")
   @JsonProperty("amount")
   private MoneyType amount = null;
 
   @OneToOne
-//  @OneToMany(mappedBy = "paymenttype")
   @JsonProperty("taxAmount")
   private MoneyType taxAmount = null;
 
   @OneToOne
-//  @OneToMany(mappedBy = "paymenttype")
   @JsonProperty("totalAmount")
   private MoneyType totalAmount = null;
 
@@ -87,14 +86,16 @@ public class PaymentType   {
   @JsonProperty("account")
   private AccountRefType account = null;
 
-  @OneToMany
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
   @JsonProperty("paymentItem")
   @Valid
   private List<PaymentItemType> paymentItem = null;
 
 
-  @OneToMany
-  @JsonProperty("paymentMethod")
+    @OneToMany(cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonProperty("paymentMethod")
   @Valid
   private List<PaymentMethodType> paymentMethod = null;
 
@@ -120,7 +121,7 @@ public class PaymentType   {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "")
-//  @NotNull
+  @NotNull
 
 
   public String getId() {
@@ -141,7 +142,7 @@ public class PaymentType   {
    * @return href
   **/
   @ApiModelProperty(required = true, value = "")
-//  @NotNull
+  @NotNull
 
 
   public String getHref() {
@@ -182,7 +183,7 @@ public class PaymentType   {
    * @return paymentDate
   **/
   @ApiModelProperty(required = true, value = "")
-//  @NotNull
+  @NotNull
 
   @Valid
 
@@ -306,7 +307,7 @@ public class PaymentType   {
    * @return totalAmount
   **/
   @ApiModelProperty(required = true, value = "")
-//  @NotNull
+  @NotNull
 
   @Valid
 
