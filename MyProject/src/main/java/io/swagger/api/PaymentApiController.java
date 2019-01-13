@@ -1,11 +1,9 @@
 package io.swagger.api;
 
-import io.swagger.model.MoneyType;
+import io.swagger.model.*;
 import io.swagger.service.PaymentTypeServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.threeten.bp.OffsetDateTime;
-import io.swagger.model.PaymentRequestType;
-import io.swagger.model.PaymentType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.*;
 import org.slf4j.Logger;
@@ -78,21 +76,38 @@ public class PaymentApiController implements PaymentApi {
         return new ResponseEntity<PaymentType>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<PaymentType>> retrievePayments(@ApiParam(value = "To retrieve the payments from a specific customer") @Valid @RequestParam(value = "customerId", required = false) String customerId,@ApiParam(value = "To retrieve the payments from a specific account") @Valid @RequestParam(value = "accountId", required = false) String accountId,@ApiParam(value = "To retrieve the payments performed with a specific method", allowableValues = "directToBill, digitalWallet, bankAccount, bankCard, prepaidCard, voucher, check, loyalty") @Valid @RequestParam(value = "paymentMethod.type", required = false) String paymentMethodType,@ApiParam(value = "To retrieve the payments performed after this date") @Valid @RequestParam(value = "startDate", required = false) OffsetDateTime startDate,@ApiParam(value = "To retrieve the payments performed before this date") @Valid @RequestParam(value = "endDate", required = false) OffsetDateTime endDate,@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit,@ApiParam(value = "") @Valid @RequestParam(value = "offset", required = false) Integer offset) {
+    public ResponseEntity<List<PaymentType>> retrievePayments(@ApiParam(value = "To retrieve the payments from a specific customer")
+                                                              @Valid @RequestParam(value = "customerId", required = false) String customerId,
+                                                              @ApiParam(value = "To retrieve the payments from a specific account")
+                                                              @Valid @RequestParam(value = "accountId", required = false) String accountId,
+                                                              @ApiParam(value = "To retrieve the payments performed with a specific method",
+                                                                      allowableValues = "directToBill, digitalWallet, bankAccount, bankCard, prepaidCard, voucher, check, loyalty")
+                                                              @Valid @RequestParam(value = "paymentMethod.type", required = false) String paymentMethodType,
+                                                              @ApiParam(value = "To retrieve the payments performed after this date")
+                                                              @Valid @RequestParam(value = "startDate", required = false) OffsetDateTime startDate,
+                                                              @ApiParam(value = "To retrieve the payments performed before this date")
+                                                              @Valid @RequestParam(value = "endDate", required = false) OffsetDateTime endDate,
+                                                              @ApiParam(value = "")
+                                                              @Valid @RequestParam(value = "limit", required = false) Integer limit,
+                                                              @ApiParam(value = "")
+                                                              @Valid @RequestParam(value = "offset", required = false) Integer offset) {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
-            try {
+            if(paymentMethodType != null){
+                try {
 
 //                return new ResponseEntity<List<PaymentType>>(objectMapper.readValue("[ {  \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"amount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"authorizationCode\" : \"authorizationCode\",  \"channel\" : {    \"name\" : \"name\",    \"description\" : \"description\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"description\" : \"description\",  \"payer\" : {    \"role\" : \"role\",    \"name\" : \"name\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"totalAmount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"paymentItem\" : [ {    \"totalAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"amount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"item\" : {      \"name\" : \"name\",      \"description\" : \"description\",      \"id\" : \"id\",      \"href\" : \"href\",      \"type\" : \"type\"    },    \"taxAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    }  }, {    \"totalAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"amount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"item\" : {      \"name\" : \"name\",      \"description\" : \"description\",      \"id\" : \"id\",      \"href\" : \"href\",      \"type\" : \"type\"    },    \"taxAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    }  } ],  \"name\" : \"name\",  \"paymentMethod\" : [ {    \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",    \"validFor\" : {      \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",      \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"    },    \"authorizationCode\" : \"authorizationCode\",    \"name\" : \"name\",    \"description\" : \"description\",    \"details\" : \"{}\",    \"id\" : \"id\",    \"href\" : \"href\",    \"relatedParty\" : [ {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    }, {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    } ],    \"type\" : \"cash\",    \"preferred\" : true,    \"status\" : \"status\"  }, {    \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",    \"validFor\" : {      \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",      \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"    },    \"authorizationCode\" : \"authorizationCode\",    \"name\" : \"name\",    \"description\" : \"description\",    \"details\" : \"{}\",    \"id\" : \"id\",    \"href\" : \"href\",    \"relatedParty\" : [ {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    }, {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    } ],    \"type\" : \"cash\",    \"preferred\" : true,    \"status\" : \"status\"  } ],  \"correlatorId\" : \"correlatorId\",  \"id\" : \"id\",  \"href\" : \"href\",  \"paymentDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"taxAmount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"account\" : {    \"name\" : \"name\",    \"description\" : \"description\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"status\" : \"status\"}, {  \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"amount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"authorizationCode\" : \"authorizationCode\",  \"channel\" : {    \"name\" : \"name\",    \"description\" : \"description\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"description\" : \"description\",  \"payer\" : {    \"role\" : \"role\",    \"name\" : \"name\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"totalAmount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"paymentItem\" : [ {    \"totalAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"amount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"item\" : {      \"name\" : \"name\",      \"description\" : \"description\",      \"id\" : \"id\",      \"href\" : \"href\",      \"type\" : \"type\"    },    \"taxAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    }  }, {    \"totalAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"amount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    },    \"item\" : {      \"name\" : \"name\",      \"description\" : \"description\",      \"id\" : \"id\",      \"href\" : \"href\",      \"type\" : \"type\"    },    \"taxAmount\" : {      \"amount\" : 0.80082819046101150206595775671303272247314453125,      \"units\" : \"units\"    }  } ],  \"name\" : \"name\",  \"paymentMethod\" : [ {    \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",    \"validFor\" : {      \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",      \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"    },    \"authorizationCode\" : \"authorizationCode\",    \"name\" : \"name\",    \"description\" : \"description\",    \"details\" : \"{}\",    \"id\" : \"id\",    \"href\" : \"href\",    \"relatedParty\" : [ {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    }, {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    } ],    \"type\" : \"cash\",    \"preferred\" : true,    \"status\" : \"status\"  }, {    \"statusDate\" : \"2000-01-23T04:56:07.000+00:00\",    \"validFor\" : {      \"startDateTime\" : \"2000-01-23T04:56:07.000+00:00\",      \"endDateTime\" : \"2000-01-23T04:56:07.000+00:00\"    },    \"authorizationCode\" : \"authorizationCode\",    \"name\" : \"name\",    \"description\" : \"description\",    \"details\" : \"{}\",    \"id\" : \"id\",    \"href\" : \"href\",    \"relatedParty\" : [ {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    }, {      \"role\" : \"role\",      \"name\" : \"name\",      \"id\" : \"id\",      \"href\" : \"href\"    } ],    \"type\" : \"cash\",    \"preferred\" : true,    \"status\" : \"status\"  } ],  \"correlatorId\" : \"correlatorId\",  \"id\" : \"id\",  \"href\" : \"href\",  \"paymentDate\" : \"2000-01-23T04:56:07.000+00:00\",  \"taxAmount\" : {    \"amount\" : 0.80082819046101150206595775671303272247314453125,    \"units\" : \"units\"  },  \"account\" : {    \"name\" : \"name\",    \"description\" : \"description\",    \"id\" : \"id\",    \"href\" : \"href\"  },  \"status\" : \"status\"} ]", List.class), HttpStatus.NOT_IMPLEMENTED);
-                return new ResponseEntity<List<PaymentType>>(
-                        paymentTypeBaseService.list(),
-                        HttpStatus.OK
-                );
-            } catch (Exception e) {
-                log.error("Couldn't serialize response for content type application/json", e);
-                return new ResponseEntity<List<PaymentType>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                    return new ResponseEntity<List<PaymentType>>(
+                            paymentTypeBaseService.list(),
+                            HttpStatus.OK
+                    );
+                } catch (Exception e) {
+                    log.error("Couldn't serialize response for content type application/json", e);
+                    return new ResponseEntity<List<PaymentType>>(HttpStatus.INTERNAL_SERVER_ERROR);
+                }
             }
-        }
+            }
+
 
         return new ResponseEntity<List<PaymentType>>(HttpStatus.NOT_IMPLEMENTED);
     }
@@ -108,6 +123,16 @@ public class PaymentApiController implements PaymentApi {
         moneyType.amount(new BigDecimal(123));
         moneyType.units("euro");
         paymentType.setTotalAmount(moneyType);
+        paymentType.setPaymentItem(List.of(new PaymentItemType(), new PaymentItemType(), new PaymentItemType()));
+        paymentType.setPaymentMethod(List.of(
+                new PaymentMethodType()
+                    .type(PaymentMethodType.TypeEnum.CASH)
+                    .href("localhost/" + prefix)
+                    .details(new Object()),
+                new PaymentMethodType()
+                        .type(PaymentMethodType.TypeEnum.BANKACCOUNTDEBIT)
+                        .href("localhost/" + prefix)
+                        .details(new Object())));
         return paymentType;
     }
 

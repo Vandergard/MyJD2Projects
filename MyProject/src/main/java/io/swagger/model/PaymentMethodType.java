@@ -11,6 +11,7 @@ import io.swagger.model.TimePeriodType;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +30,8 @@ import javax.validation.constraints.*;
 public class PaymentMethodType   {
 
   @Id
-  @GeneratedValue (strategy = GenerationType.AUTO)
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @JsonProperty("id")
   private String id = null;
 

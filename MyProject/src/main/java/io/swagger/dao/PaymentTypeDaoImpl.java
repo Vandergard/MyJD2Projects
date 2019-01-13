@@ -24,19 +24,31 @@ public class PaymentTypeDaoImpl<T> extends BaseDaoImpl{
     @SuppressWarnings("unchecked")
     @Override
     public List<T> find() {
-        log.info("Call find()");
+        log.info("Call find() by PaymentType");
         return openSession().createQuery("from PaymentType").list();
     }
 
 //    @Override
     public void save(T item) {
+        log.info("Call save() by PaymentType");
         openSession().saveOrUpdate(item);
     }
 
 
     @Override
     public PaymentType get(Serializable id){
+        log.info("Call get() by PaymentType");
         return (PaymentType) openSession().get(tClass, id);
+    }
+
+    public void update(T item) {
+        log.info("Call update() by PaymentType");
+        openSession().update(item);
+    }
+
+    public void delete(T item) {
+        log.info("Call delete() by PaymentType");
+        openSession().delete(item);
     }
 
 }

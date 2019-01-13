@@ -1,10 +1,10 @@
 package io.swagger.service;
 
 //import io.swagger.Validator.Validator;
-import io.swagger.dao.BaseDaoImpl;
-import io.swagger.dao.MoneyTypeDaoImpl;
-import io.swagger.dao.PaymentTypeDaoImpl;
+import io.swagger.dao.*;
 import io.swagger.model.MoneyType;
+import io.swagger.model.PaymentItemType;
+import io.swagger.model.PaymentMethodType;
 import io.swagger.model.PaymentType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,6 +35,12 @@ public class PaymentTypeServiceImpl<T> extends BaseServiceImpl {
     @Autowired
     private MoneyTypeDaoImpl<T> moneyTypeDao;
 
+    @Autowired
+    private PaymentMethodTypeDaoImpl<T> paymentMethodType;
+
+//    @Autowired
+//    private PaymentItemTypeDaoImpl<T> paymentItemTypeDao;
+
     @Override
     @Transactional(propagation =  Propagation.REQUIRED, readOnly = true)
     public List<T> list() {
@@ -60,6 +66,10 @@ public class PaymentTypeServiceImpl<T> extends BaseServiceImpl {
     public void saveOne(T item) {
         PaymentType paymentType = (PaymentType)item;
         moneyTypeDao.save((T) paymentType.getTotalAmount());
+
+//        for(PaymentItemType paymentItemType: ((PaymentType) item).getPaymentItem()){
+//            paymentItemTypeDao.save((T)paymentItemType);
+//        }
         paymentTypeDao.save(item);
 
 
@@ -68,6 +78,12 @@ public class PaymentTypeServiceImpl<T> extends BaseServiceImpl {
     @Transactional(propagation = Propagation.REQUIRED)
     public PaymentType findId(String id){
       return paymentTypeDao.get(id);
+    }
+
+    @Transactional(propagation = Propagation.REQUIRED)
+    public PaymentType findByPaymentMethodType(String paymentMethod){
+        List <PaymentMethodType> paymentMethodTypes = paymentMethodType.getbyType(paymentMethod);
+        return null;
     }
 
 }
