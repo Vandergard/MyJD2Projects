@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import org.hibernate.annotations.GenericGenerator;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -21,7 +22,8 @@ import javax.validation.constraints.*;
 public class RelatedPartyRefType   {
 
   @Id
-  @GeneratedValue (strategy = GenerationType.AUTO)
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @JsonProperty("id")
   private String id = null;
 
@@ -67,8 +69,8 @@ public class RelatedPartyRefType   {
    * A resource URI pointing to the resource in the OB that stores the party entity information
    * @return href
   **/
-  @ApiModelProperty(required = true, value = "A resource URI pointing to the resource in the OB that stores the party entity information")
-  @NotNull
+  @ApiModelProperty(required = false, value = "A resource URI pointing to the resource in the OB that stores the party entity information")
+//  @NotNull
 
 
   public String getHref() {

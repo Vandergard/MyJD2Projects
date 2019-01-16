@@ -43,7 +43,7 @@ public class PaymentMethodTypeDaoImpl<T> extends BaseDaoImpl {
 
     public List<PaymentMethodType> getbyType(String paymentMethodType){
         log.info("Call getByType() by PaymentMethodType");
-        String query = "from PaymentMethodType where type="+paymentMethodType;
+        String query = "from PaymentMethodType type where type.name like'" + paymentMethodType + "'";
         return openSession().createQuery(query).list();
     }
 }

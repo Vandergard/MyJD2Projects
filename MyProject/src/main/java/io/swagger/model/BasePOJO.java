@@ -1,5 +1,7 @@
 package io.swagger.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -9,6 +11,7 @@ import javax.persistence.MappedSuperclass;
 public class BasePOJO {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.AUTO)
-    private Integer id;
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    private String id;
 }

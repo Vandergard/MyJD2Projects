@@ -39,8 +39,8 @@ public class TimePeriodType  extends BasePOJO {
    * Start date of the period
    * @return startDateTime
   **/
-  @ApiModelProperty(required = true, value = "Start date of the period")
-  @NotNull
+  @ApiModelProperty(required = false, value = "Start date of the period")
+//  @NotNull
 
   @Valid
 

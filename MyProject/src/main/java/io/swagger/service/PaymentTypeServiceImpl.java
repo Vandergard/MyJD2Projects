@@ -80,6 +80,16 @@ public class PaymentTypeServiceImpl<T> extends BaseServiceImpl {
       return paymentTypeDao.get(id);
     }
 
+//    @Transactional(propagation = Propagation.REQUIRED)
+//    public PaymentMethodType getPaymentMethodById(String id){
+//        return paymentMethodType.get(id);
+//    }
+//
+//    @Transactional(propagation = Propagation.REQUIRED)
+//    public List <PaymentMethodType> findAllPaymentMethodByType (String name){
+//        return paymentMethodType.get(id);
+//    }
+
     @Transactional(propagation = Propagation.REQUIRED)
     public PaymentType findByPaymentMethodType(String paymentMethod){
         List <PaymentMethodType> paymentMethodTypes = paymentMethodType.getbyType(paymentMethod);
