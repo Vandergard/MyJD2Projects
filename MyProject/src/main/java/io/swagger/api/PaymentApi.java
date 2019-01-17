@@ -53,6 +53,19 @@ public interface PaymentApi {
     @RequestMapping(value = "/payment",
         produces = { "application/json" }, 
         method = RequestMethod.GET)
-    ResponseEntity<List<PaymentType>> retrievePayments(@ApiParam(value = "To retrieve the payments from a specific customer") @Valid @RequestParam(value = "customerId", required = false) String customerId,@ApiParam(value = "To retrieve the payments from a specific account") @Valid @RequestParam(value = "accountId", required = false) String accountId,@ApiParam(value = "To retrieve the payments performed with a specific method", allowableValues = "directToBill, digitalWallet, bankAccount, bankCard, prepaidCard, voucher, check, loyalty") @Valid @RequestParam(value = "paymentMethod.type", required = false) String paymentMethodType,@ApiParam(value = "To retrieve the payments performed after this date") @Valid @RequestParam(value = "startDate", required = false) OffsetDateTime startDate,@ApiParam(value = "To retrieve the payments performed before this date") @Valid @RequestParam(value = "endDate", required = false) OffsetDateTime endDate,@ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit,@ApiParam(value = "") @Valid @RequestParam(value = "offset", required = false) Integer offset);
+    ResponseEntity<List<PaymentType>> retrievePayments(
+//            @ApiParam(value = "To retrieve the payments from a specific customer")
+//            @Valid @RequestParam(value = "customerId", required = false) String customerId,
+//            @ApiParam(value = "To retrieve the payments from a specific account")
+//            @Valid @RequestParam(value = "accountId", required = false) String accountId,
+            @ApiParam(value = "To retrieve the payments performed with a specific method",
+                    allowableValues = "directToBill, digitalWallet, bankAccount, bankCard, prepaidCard, voucher, check, loyalty")
+            @Valid @RequestParam(value = "paymentMethod.type", required = false) String paymentMethodType);
+//            @ApiParam(value = "To retrieve the payments performed after this date")
+//            @Valid @RequestParam(value = "startDate", required = false) OffsetDateTime startDate,
+//            @ApiParam(value = "To retrieve the payments performed before this date")
+//            @Valid @RequestParam(value = "endDate", required = false) OffsetDateTime endDate,
+//            @ApiParam(value = "") @Valid @RequestParam(value = "limit", required = false) Integer limit,
+//            @ApiParam(value = "") @Valid @RequestParam(value = "offset", required = false) Integer offset);
 
 }

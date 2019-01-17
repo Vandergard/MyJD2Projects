@@ -76,21 +76,23 @@ public class PaymentApiController implements PaymentApi {
 //        return new ResponseEntity<PaymentType>(HttpStatus.NOT_IMPLEMENTED);
     }
 
-    public ResponseEntity<List<PaymentType>> retrievePayments(@ApiParam(value = "To retrieve the payments from a specific customer")
-                                                              @Valid @RequestParam(value = "customerId", required = false) String customerId,
-                                                              @ApiParam(value = "To retrieve the payments from a specific account")
-                                                              @Valid @RequestParam(value = "accountId", required = false) String accountId,
+    public ResponseEntity<List<PaymentType>> retrievePayments(
+//                                                        @ApiParam(value = "To retrieve the payments from a specific customer")
+//                                                              @Valid @RequestParam(value = "customerId", required = false) String customerId,
+//                                                              @ApiParam(value = "To retrieve the payments from a specific account")
+//                                                              @Valid @RequestParam(value = "accountId", required = false) String accountId,
                                                               @ApiParam(value = "To retrieve the payments performed with a specific method",
                                                                       allowableValues = "directToBill, digitalWallet, bankAccount, bankCard, prepaidCard, voucher, check, loyalty")
-                                                              @Valid @RequestParam(value = "paymentMethod.type", required = false) String paymentMethodType,
-                                                              @ApiParam(value = "To retrieve the payments performed after this date")
-                                                              @Valid @RequestParam(value = "startDate", required = false) OffsetDateTime startDate,
-                                                              @ApiParam(value = "To retrieve the payments performed before this date")
-                                                              @Valid @RequestParam(value = "endDate", required = false) OffsetDateTime endDate,
-                                                              @ApiParam(value = "")
-                                                              @Valid @RequestParam(value = "limit", required = false) Integer limit,
-                                                              @ApiParam(value = "")
-                                                              @Valid @RequestParam(value = "offset", required = false) Integer offset) {
+                                                              @Valid @RequestParam(value = "paymentMethod.type", required = false) String paymentMethodType)
+//                                                              @ApiParam(value = "To retrieve the payments performed after this date")
+//                                                              @Valid @RequestParam(value = "startDate", required = false) OffsetDateTime startDate,
+//                                                              @ApiParam(value = "To retrieve the payments performed before this date")
+//                                                              @Valid @RequestParam(value = "endDate", required = false) OffsetDateTime endDate,
+//                                                              @ApiParam(value = "")
+//                                                              @Valid @RequestParam(value = "limit", required = false) Integer limit,
+//                                                              @ApiParam(value = "")
+//                                                              @Valid @RequestParam(value = "offset", required = false) Integer offset)
+ {
         String accept = request.getHeader("Accept");
         if (accept != null && accept.contains("application/json")) {
             if(paymentMethodType != null){

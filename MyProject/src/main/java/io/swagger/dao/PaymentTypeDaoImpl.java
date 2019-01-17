@@ -2,6 +2,7 @@ package io.swagger.dao;
 
 import io.swagger.model.PaymentType;
 import org.hibernate.SessionFactory;
+import  org.hibernate.query.Query ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -50,5 +51,20 @@ public class PaymentTypeDaoImpl<T> extends BaseDaoImpl{
         log.info("Call delete() by PaymentType");
         openSession().delete(item);
     }
+
+    public List<T> findByCriteria(String findCriteria){
+        log.info("Call findByCriteria() by PaymentType");
+
+
+        String hql = "SELECT PT.id, PT.name, PT.href, PT.paymentDate, PMT.id, PMT.href, PMT.type "+
+                "FROM PaymentType as PT JOIN PT.PaymentMethodType as PMT "+
+                "WHERE PT.paymentMethod like : f_paymentMethod";
+
+        Query query = openSession().createQuery(hql);
+        query.setParameter("f_paymentMethod", findCriteria);
+
+        return query.list();
+    }
+
 
 }
