@@ -1,7 +1,7 @@
 -------------------------------------------------------------------------------
 Test set: dao.PaymentMethodTypeDaoImplTest
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 8.273 sec <<< FAILURE! - in dao.PaymentMethodTypeDaoImplTest
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 10.646 sec <<< FAILURE! - in dao.PaymentMethodTypeDaoImplTest
 getbyType(dao.PaymentMethodTypeDaoImplTest)  Time elapsed: 0.343 sec  <<< ERROR!
 org.springframework.dao.InvalidDataAccessResourceUsageException: could not execute statement; SQL [n/a]; nested exception is org.hibernate.exception.SQLGrammarException: could not execute statement
 	at org.springframework.orm.hibernate5.SessionFactoryUtils.convertHibernateAccessException(SessionFactoryUtils.java:224)

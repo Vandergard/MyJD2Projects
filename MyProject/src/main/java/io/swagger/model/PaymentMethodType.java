@@ -12,6 +12,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
@@ -55,7 +57,8 @@ public class PaymentMethodType   {
   @JsonProperty("preferred")
   private Boolean preferred = null;
 
-  @OneToMany
+  @OneToMany(cascade = CascadeType.ALL)
+  @LazyCollection(LazyCollectionOption.FALSE)
   @JsonProperty("relatedParty")
   @Valid
   private List<RelatedPartyRefType> relatedParty = null;

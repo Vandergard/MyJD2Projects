@@ -62,7 +62,7 @@ public class PaymentApiController implements PaymentApi {
 
     public ResponseEntity<PaymentType> retrievePayment(@ApiParam(value = "ID of the payment that needs to be fetched",required=true) @PathVariable("paymentId") String paymentId) {
         String accept = request.getHeader("Accept");
-        if (accept != null && accept.contains("application/json")) {
+//        if (accept != null && accept.contains("application/json")) {
             try {
 
                 return new ResponseEntity<PaymentType>(paymentTypeBaseService.findId(paymentId), HttpStatus.OK);
@@ -71,9 +71,9 @@ public class PaymentApiController implements PaymentApi {
                 log.error("Couldn't serialize response for content type application/json", e);
                 return new ResponseEntity<PaymentType>(HttpStatus.INTERNAL_SERVER_ERROR);
             }
-        }
+//        }
 
-        return new ResponseEntity<PaymentType>(HttpStatus.NOT_IMPLEMENTED);
+//        return new ResponseEntity<PaymentType>(HttpStatus.NOT_IMPLEMENTED);
     }
 
     public ResponseEntity<List<PaymentType>> retrievePayments(@ApiParam(value = "To retrieve the payments from a specific customer")
