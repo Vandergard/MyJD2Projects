@@ -8,6 +8,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @ImportResource({"classpath:hibernate5configuration-test.xml"})
-@ComponentScan(basePackages = {"io.swagger.dao", "io.swagger.model"})
+@ComponentScan(basePackages = {"io.swagger.dao", "io.swagger.model", "io.swagger.service"})
 public class HibernateXMLConfTest {
 }

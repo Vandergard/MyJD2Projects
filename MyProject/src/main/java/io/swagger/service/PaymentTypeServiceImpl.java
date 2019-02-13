@@ -80,14 +80,9 @@ public class PaymentTypeServiceImpl<T> extends BaseServiceImpl {
 
         paymentTypeDao.save(item);
 
-
-
 //        moneyTypeDao.save((T) paymentType.getAmount());
 //        moneyTypeDao.save((T) paymentType.getTaxAmount());
 //        moneyTypeDao.save((T) paymentType.getTotalAmount());
-
-
-
 
 //        for(PaymentItemType paymentItemType: ((PaymentType) item).getPaymentItem()){
 //            paymentItemTypeDao.save((T)paymentItemType);
@@ -114,5 +109,6 @@ public class PaymentTypeServiceImpl<T> extends BaseServiceImpl {
     public List<T> findByPaymentMethodType(String paymentMethod){
         return (List<T>)List.of(paymentTypeDao.findByCriteria(paymentMethod));
     }
+
 
 }
