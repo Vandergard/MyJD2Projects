@@ -40,7 +40,7 @@ public class MoneyType extends BasePOJO  {
    * @return amount
   **/
   @ApiModelProperty(required = true, value = "Amount of money")
-  @NotNull
+//  @NotNull
 
   @Valid
 
@@ -62,7 +62,7 @@ public class MoneyType extends BasePOJO  {
    * @return units
   **/
   @ApiModelProperty(required = true, value = "Currency")
-  @NotNull
+//  @NotNull
 
 
   public String getUnits() {

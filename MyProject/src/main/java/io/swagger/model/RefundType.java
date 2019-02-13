@@ -14,6 +14,9 @@ import io.swagger.model.PaymentRefType;
 import io.swagger.model.RelatedPartyRefType;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 
@@ -78,9 +81,10 @@ public class RefundType   {
   @JsonProperty("account")
   private AccountRefType account = null;
 
-  @OneToMany
   @JsonProperty("paymentMethod")
   @Valid
+  @OneToMany(cascade = CascadeType.ALL)
+  @LazyCollection(LazyCollectionOption.FALSE)
   private List<PaymentMethodType> paymentMethod = new ArrayList<PaymentMethodType>();
 
   @OneToOne

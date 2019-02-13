@@ -49,7 +49,7 @@ public class RelatedPartyRefType   {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "Unique identifier for the party entity")
-  @NotNull
+//  @NotNull
 
 
   public String getId() {

@@ -13,7 +13,9 @@ import io.swagger.model.PaymentMethodType;
 import io.swagger.model.RelatedPartyRefType;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -33,29 +35,30 @@ import javax.validation.constraints.*;
 
 @Entity
 public class PaymentType   {
-    @Id
-    @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+
+  @Id
+  @GeneratedValue(generator = "UUID")
+  @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
   @JsonProperty("id")
   private String id = null;
 
-    @Column
+  @Column
   @JsonProperty("href")
   private String href = null;
 
-    @Column
+  @Column
   @JsonProperty("correlatorId")
   private String correlatorId = null;
 
-    @Column
+  @Column
   @JsonProperty("paymentDate")
   private OffsetDateTime paymentDate = null;
 
-    @Column
+  @Column
   @JsonProperty("name")
   private String name = null;
 
-    @Column
+  @Column
   @JsonProperty("description")
   private String description = null;
 
@@ -64,15 +67,15 @@ public class PaymentType   {
   private String authorizationCode = null;
 
 
-  @OneToOne
+  @OneToOne (cascade = CascadeType.ALL)
   @JsonProperty("amount")
   private MoneyType amount = null;
 
-  @OneToOne
+  @OneToOne (cascade = CascadeType.ALL)
   @JsonProperty("taxAmount")
   private MoneyType taxAmount = null;
 
-  @OneToOne
+  @OneToOne (cascade = CascadeType.ALL)
   @JsonProperty("totalAmount")
   private MoneyType totalAmount = null;
 
@@ -86,17 +89,24 @@ public class PaymentType   {
   @JsonProperty("account")
   private AccountRefType account = null;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+
+  @OneToMany(cascade = CascadeType.ALL)
+  @LazyCollection(LazyCollectionOption.FALSE)
   @JsonProperty("paymentItem")
   @Valid
   private List<PaymentItemType> paymentItem = null;
 
+//    @Transient
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonProperty("paymentMethod")
   @Valid
+  @OneToMany (cascade = CascadeType.ALL)
+  @LazyCollection(LazyCollectionOption.FALSE)
+//  @JoinTable(
+//                                     name="PaymentType_PaymentMethodType",
+//          joinColumns = @JoinColumn( name="PaymentTypeId", referencedColumnName="id"),
+//          inverseJoinColumns = @JoinColumn( name="PaymentMethodTypeId", referencedColumnName="id")
+//  )
+  @JsonProperty("paymentMethod")
   private List<PaymentMethodType> paymentMethod = null;
 
   @Column
@@ -107,7 +117,8 @@ public class PaymentType   {
   @JsonProperty("statusDate")
   private OffsetDateTime statusDate = null;
 
-  @OneToOne
+  @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+  @LazyCollection(LazyCollectionOption.FALSE)
   @JsonProperty("payer")
   private RelatedPartyRefType payer = null;
 
@@ -121,7 +132,7 @@ public class PaymentType   {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "")
-  @NotNull
+//  @NotNull
 
 
   public String getId() {
@@ -142,7 +153,7 @@ public class PaymentType   {
    * @return href
   **/
   @ApiModelProperty(required = true, value = "")
-  @NotNull
+//  @NotNull
 
 
   public String getHref() {
@@ -183,7 +194,7 @@ public class PaymentType   {
    * @return paymentDate
   **/
   @ApiModelProperty(required = true, value = "")
-  @NotNull
+//  @NotNull
 
   @Valid
 
@@ -307,7 +318,7 @@ public class PaymentType   {
    * @return totalAmount
   **/
   @ApiModelProperty(required = true, value = "")
-  @NotNull
+//  @NotNull
 
   @Valid
 

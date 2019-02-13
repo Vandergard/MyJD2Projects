@@ -49,22 +49,22 @@ public class PaymentMethodTypeDaoImplTest {
         // given
         PaymentMethodType paymentMethodType = new PaymentMethodType();
         paymentMethodType.setName("Test payment method type");
-        paymentMethodType.setDetails("Details");
-        paymentMethodType.setType(PaymentMethodType.TypeEnum.BANKACCOUNTDEBIT);
+//        paymentMethodType.setDetails("Details");
+//        paymentMethodType.setType(PaymentMethodType.TypeEnum.BANKACCOUNTDEBIT);
         paymentMethodType.setHref("http://localhost/paymentmethodtype/{id}");
 //
-//        // when
-//        objUnderTest.save(paymentMethodType);
-//        assertNotNull(paymentMethodType.getId());
-//        log.info("PaymentMethodType ID=" + paymentMethodType.getId());
-//
-////        PaymentMethodType paymentMethodTypePers = objUnderTest.get(paymentMethodType.getId());
-////        log.info("PaymentMethodType ID=" + paymentMethodTypePers.getId());
-////        assertEquals(paymentMethodType.getId(), paymentMethodTypePers.getId());
-////
-////        // then
-////        List res = objUnderTest.getbyType(paymentMethodType.getName());
-////        assertTrue(res.size() > 0);
+        // when
+        objUnderTest.save(paymentMethodType);
+        assertNotNull(paymentMethodType.getId());
+        log.info("PaymentMethodType ID=" + paymentMethodType.getId());
+
+        PaymentMethodType paymentMethodTypePers = objUnderTest.get(paymentMethodType.getId());
+        log.info("PaymentMethodType ID=" + paymentMethodTypePers.getId());
+        assertEquals(paymentMethodType.getId(), paymentMethodTypePers.getId());
+
+        // then
+        List res = objUnderTest.getbyType(paymentMethodType.getName());
+        assertTrue(res.size() > 0);
     }
-//
+
 }

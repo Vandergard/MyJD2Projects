@@ -51,7 +51,7 @@ public class EntityRefType   {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "Unique identifier of the entity")
-  @NotNull
+//  @NotNull
 
 
   public String getId() {
@@ -72,7 +72,7 @@ public class EntityRefType   {
    * @return href
   **/
   @ApiModelProperty(required = true, value = "URI where to query or perform actions on the entity")
-  @NotNull
+//  @NotNull
 
 
   public String getHref() {
@@ -93,7 +93,7 @@ public class EntityRefType   {
    * @return type
   **/
   @ApiModelProperty(required = true, value = "Type of entity (e.g.: account, customer, ticket, etc.)")
-  @NotNull
+//  @NotNull
 
 
   public String getType() {

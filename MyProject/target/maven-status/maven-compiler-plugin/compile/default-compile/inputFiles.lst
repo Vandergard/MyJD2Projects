@@ -38,6 +38,7 @@
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/api/AccountApiController.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/api/ApiOriginFilter.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/configuration/CustomInstantDeserializer.java
+/home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/configuration/SecurityConfiguration.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/model/CheckType.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/configuration/HomeController.java
 /home/vadim/JAVA/CloneForProjectJD2/MyProject/src/main/java/io/swagger/dao/PaymentMethodTypeDaoImpl.java

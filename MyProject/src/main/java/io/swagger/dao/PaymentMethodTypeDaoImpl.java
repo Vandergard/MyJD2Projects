@@ -33,7 +33,7 @@ public class PaymentMethodTypeDaoImpl<T> extends BaseDaoImpl {
 
     public void save(T item){
         log.info("Call save() by PaymentMethodType");
-        openSession().saveOrUpdate(item);
+        openSession().save(item);
     }
 
     public PaymentMethodType get(Serializable id){

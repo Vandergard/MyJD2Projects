@@ -46,7 +46,7 @@ public class ChannelRefType   {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "Unique identifier of the channel")
-  @NotNull
+//  @NotNull
 
 
   public String getId() {
@@ -67,7 +67,7 @@ public class ChannelRefType   {
    * @return href
   **/
   @ApiModelProperty(required = true, value = "URI where to query or perform actions on the channel")
-  @NotNull
+//  @NotNull
 
 
   public String getHref() {

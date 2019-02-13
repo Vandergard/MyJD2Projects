@@ -25,6 +25,7 @@ io/swagger/model/BankCardType$TypeEnum.class
 io/swagger/configuration/CustomInstantDeserializer$3.class
 io/swagger/dao/PaymentItemTypeDaoImpl.class
 io/swagger/Swagger2SpringBoot.class
+io/swagger/configuration/SecurityConfiguration.class
 io/swagger/configuration/CustomInstantDeserializer$6.class
 io/swagger/configuration/SwaggerDocumentationConfig.class
 io/swagger/model/PaymentRefType.class

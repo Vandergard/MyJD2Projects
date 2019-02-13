@@ -2,10 +2,8 @@ package io.swagger.service;
 
 //import io.swagger.Validator.Validator;
 import io.swagger.dao.*;
-import io.swagger.model.MoneyType;
-import io.swagger.model.PaymentItemType;
-import io.swagger.model.PaymentMethodType;
-import io.swagger.model.PaymentType;
+import io.swagger.model.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
@@ -38,8 +36,16 @@ public class PaymentTypeServiceImpl<T> extends BaseServiceImpl {
     @Autowired
     private PaymentMethodTypeDaoImpl<T> paymentMethodType;
 
+    @Autowired
+    private RelatedPartyRefTypeDaoImpl<T> relatedPartyRefTypeDao;
+
 //    @Autowired
 //    private PaymentItemTypeDaoImpl<T> paymentItemTypeDao;
+
+//    @Autowired
+//    public PaymentTypeServiceImpl(PaymentTypeDaoImpl paymentTypeDao){
+//        this.paymentTypeDao = paymentTypeDao;
+//    }
 
     @Override
     @Transactional(propagation =  Propagation.REQUIRED, readOnly = true)
@@ -48,12 +54,12 @@ public class PaymentTypeServiceImpl<T> extends BaseServiceImpl {
         return paymentTypeDao.find();
     }
 
-    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.REPEATABLE_READ)
-    public void save(T item) {
-        log.info("save(): " + item);
-        paymentTypeDao.save(item);
-    }
-
+//    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.REPEATABLE_READ)
+//    public void save(T item) {
+//        log.info("save(): " + item);
+//        paymentTypeDao.save(item);
+//    }
+//
     @Transactional(propagation = Propagation.REQUIRES_NEW, value = "txManager")
     public void create(List<T> items) {
         log.info("create(): " + items);
@@ -61,17 +67,31 @@ public class PaymentTypeServiceImpl<T> extends BaseServiceImpl {
             saveOne(t);
         }
     }
-
-    @Transactional(propagation = Propagation.REQUIRED)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.REPEATABLE_READ)
+    @SuppressWarnings("unchecked")
     public void saveOne(T item) {
-        PaymentType paymentType = (PaymentType)item;
-        moneyTypeDao.save((T) paymentType.getTotalAmount());
+        log.info("save(): " + item);
+
+        for(PaymentMethodType paymentMethodTypeC: ((PaymentType) item).getPaymentMethod()){
+            paymentMethodType.save((T)paymentMethodTypeC);
+        }
+        RelatedPartyRefType relatedPartyRefType = ((PaymentType) item).getPayer();
+        relatedPartyRefTypeDao.save((T)relatedPartyRefType);
+
+        paymentTypeDao.save(item);
+
+
+
+//        moneyTypeDao.save((T) paymentType.getAmount());
+//        moneyTypeDao.save((T) paymentType.getTaxAmount());
+//        moneyTypeDao.save((T) paymentType.getTotalAmount());
+
+
+
 
 //        for(PaymentItemType paymentItemType: ((PaymentType) item).getPaymentItem()){
 //            paymentItemTypeDao.save((T)paymentItemType);
 //        }
-        paymentTypeDao.save(item);
-
 
     }
 

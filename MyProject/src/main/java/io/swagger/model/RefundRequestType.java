@@ -14,6 +14,9 @@ import io.swagger.model.PaymentRefType;
 import io.swagger.model.RelatedPartyRefType;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 
@@ -27,60 +30,61 @@ import javax.websocket.OnOpen;
  */
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-22T13:14:44.496+03:00")
-@Entity
+//@Entity
 public class RefundRequestType   {
 
-  @Id
-  @GeneratedValue (strategy = GenerationType.AUTO)
+//  @Id
+//  @GeneratedValue (strategy = GenerationType.AUTO)
   @JsonProperty("correlatorId")
   private String correlatorId = null;
 
-  @Column
+//  @Column
   @JsonProperty("name")
   private String name = null;
 
-  @Column
+//  @Column
   @JsonProperty("refundDate")
   private OffsetDateTime refundDate = null;
 
-  @Column
+//  @Column
   @JsonProperty("description")
   private String description = null;
 
-  @Column
+//  @Column
   @JsonProperty("authorizationCode")
   private String authorizationCode = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("amount")
   private MoneyType amount = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("taxAmount")
   private MoneyType taxAmount = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("totalAmount")
   private MoneyType totalAmount = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("channel")
   private ChannelRefType channel = null;
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("account")
   private AccountRefType account = null;
 
-  @OneToMany
   @JsonProperty("paymentMethod")
-  @Valid
+//  @Valid
+//  @OneToMany(cascade = CascadeType.ALL)
+//  @LazyCollection(LazyCollectionOption.FALSE)
   private List<PaymentMethodType> paymentMethod = new ArrayList<PaymentMethodType>();
 
-  @OneToOne
+//  @OneToOne
   @JsonProperty("relatedPayment")
   private PaymentRefType relatedPayment = null;
 
-  @Column
+//  @Column
   @JsonProperty("reason")
   private String reason = null;
 
@@ -127,7 +131,7 @@ public class RefundRequestType   {
     }
   }
 
-  @Column
+//  @Column
   @JsonProperty("status")
   private StatusEnum status = null;
 

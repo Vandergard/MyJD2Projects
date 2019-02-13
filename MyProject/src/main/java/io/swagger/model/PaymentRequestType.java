@@ -29,7 +29,7 @@ import javax.validation.constraints.*;
 @Validated
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.SpringCodegen", date = "2018-12-22T13:14:44.496+03:00")
 //@Entity
-public class PaymentRequestType extends BasePOJO  {
+public class PaymentRequestType   {
 
 //  @Column
   @JsonProperty("correlatorId")

@@ -15,6 +15,7 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 import org.hibernate.annotations.Type;
+import org.springframework.transaction.annotation.Transactional;
 import org.threeten.bp.OffsetDateTime;
 import org.springframework.validation.annotation.Validated;
 
@@ -37,6 +38,7 @@ public class PaymentMethodType   {
   @JsonProperty("id")
   private String id = null;
 
+
   @Column
   @JsonProperty("href")
   private String href = null;
@@ -49,7 +51,8 @@ public class PaymentMethodType   {
   @JsonProperty("description")
   private String description = null;
 
-  @OneToOne
+//  @Transient
+  @OneToOne (cascade = CascadeType.ALL)
   @JsonProperty("validFor")
   private TimePeriodType validFor = null;
 
@@ -57,36 +60,39 @@ public class PaymentMethodType   {
   @JsonProperty("preferred")
   private Boolean preferred = null;
 
-  @OneToMany(cascade = CascadeType.ALL)
-  @LazyCollection(LazyCollectionOption.FALSE)
-  @JsonProperty("relatedParty")
-  @Valid
+  @Transient
+//  @OneToMany(cascade = CascadeType.ALL)
+//  @LazyCollection(LazyCollectionOption.FALSE)
+//  @JsonProperty("relatedParty")
+//  @Valid
   private List<RelatedPartyRefType> relatedParty = null;
 
   /**
    * Payment method type. The content of the details field depends on the value of this one
    */
+
+
   public enum TypeEnum {
     CASH("cash"),
-    
+
     DIGITALWALLET("digitalWallet"),
-    
+
     TOKENIZEDCARD("tokenizedCard"),
-    
+
     BANKACCOUNTTRANSFER("bankAccountTransfer"),
-    
+
     BANKACCOUNTDEBIT("bankAccountDebit"),
-    
+
     BANKCARD("bankCard"),
-    
+
     ACCOUNT("account"),
-    
+
     BUCKET("bucket"),
-    
+
     VOUCHER("voucher"),
-    
+
     CHECK("check"),
-    
+
     LOYALTYACCOUNT("loyaltyAccount");
 
     private String value;
@@ -112,6 +118,8 @@ public class PaymentMethodType   {
     }
   }
 
+//  @Transient
+  @Enumerated (EnumType.STRING)
   @Column
   @JsonProperty("type")
   private TypeEnum type = null;
@@ -128,10 +136,10 @@ public class PaymentMethodType   {
   @JsonProperty("statusDate")
   private OffsetDateTime statusDate = null;
 
-  @Transient
-//  @Column
-  @JsonProperty("details")
-  private Object details = null;
+//  @Transient
+////  @Column
+//  @JsonProperty("details")
+//  private Object details = null;
 
   public PaymentMethodType id(String id) {
     this.id = id;
@@ -143,7 +151,7 @@ public class PaymentMethodType   {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "Unique id of the payment method in the server")
-  @NotNull
+//  @NotNull
 
 
   public String getId() {
@@ -164,7 +172,7 @@ public class PaymentMethodType   {
    * @return href
   **/
   @ApiModelProperty(required = true, value = "URI where to perform actions on the payment method")
-  @NotNull
+//  @NotNull
 
 
   public String getHref() {
@@ -295,8 +303,7 @@ public class PaymentMethodType   {
    * @return type
   **/
   @ApiModelProperty(required = true, value = "Payment method type. The content of the details field depends on the value of this one")
-  @NotNull
-
+//  @NotNull
 
   public TypeEnum getType() {
     return type;
@@ -367,26 +374,26 @@ public class PaymentMethodType   {
     this.statusDate = statusDate;
   }
 
-  public PaymentMethodType details(Object details) {
-    this.details = details;
-    return this;
-  }
+//  public PaymentMethodType details(Object details) {
+//    this.details = details;
+//    return this;
+//  }
 
   /**
    * Details of the payment method. This object's type depends on the value of the type field above
    * @return details
   **/
-  @ApiModelProperty(required = true, value = "Details of the payment method. This object's type depends on the value of the type field above")
-  @NotNull
+//  @ApiModelProperty(required = true, value = "Details of the payment method. This object's type depends on the value of the type field above")
+//  @NotNull
 
 
-  public Object getDetails() {
-    return details;
-  }
-
-  public void setDetails(Object details) {
-    this.details = details;
-  }
+//  public Object getDetails() {
+//    return details;
+//  }
+//
+//  public void setDetails(Object details) {
+//    this.details = details;
+//  }
 
 
   @Override
@@ -408,20 +415,20 @@ public class PaymentMethodType   {
         Objects.equals(this.type, paymentMethodType.type) &&
         Objects.equals(this.authorizationCode, paymentMethodType.authorizationCode) &&
         Objects.equals(this.status, paymentMethodType.status) &&
-        Objects.equals(this.statusDate, paymentMethodType.statusDate) &&
-        Objects.equals(this.details, paymentMethodType.details);
+        Objects.equals(this.statusDate, paymentMethodType.statusDate);
+//        Objects.equals(this.details, paymentMethodType.details);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, href, name, description, validFor, preferred, relatedParty, type, authorizationCode, status, statusDate, details);
+    return Objects.hash(id, href, name, description, validFor, preferred, relatedParty, type, authorizationCode, status, statusDate); //details
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class PaymentMethodType {\n");
-    
+
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
@@ -433,7 +440,7 @@ public class PaymentMethodType   {
     sb.append("    authorizationCode: ").append(toIndentedString(authorizationCode)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    statusDate: ").append(toIndentedString(statusDate)).append("\n");
-    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+//    sb.append("    details: ").append(toIndentedString(details)).append("\n");
     sb.append("}");
     return sb.toString();
   }

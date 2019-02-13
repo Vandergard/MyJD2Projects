@@ -30,7 +30,7 @@ public class RelatedPartyRefTypeDaoImpl<T> extends BaseDaoImpl {
 
     public void save(T item){
         log.info("Call save() by RelatedPartyRefType");
-        openSession().saveOrUpdate(item);
+        openSession().save(item);
     }
 
     public RelatedPartyRefType get(Serializable id){

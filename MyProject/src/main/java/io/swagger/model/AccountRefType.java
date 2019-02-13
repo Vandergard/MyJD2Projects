@@ -47,7 +47,7 @@ public class AccountRefType   {
    * @return id
   **/
   @ApiModelProperty(required = true, value = "Unique identifier of the entity")
-  @NotNull
+//  @NotNull
 
 
   public String getId() {
@@ -68,7 +68,7 @@ public class AccountRefType   {
    * @return href
   **/
   @ApiModelProperty(required = true, value = "URI where to query or perform actions on the entity")
-  @NotNull
+//  @NotNull
 
 
   public String getHref() {

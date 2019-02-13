@@ -9,9 +9,7 @@ import io.swagger.model.EntityRefType;
 import io.swagger.model.MoneyType;
 import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.*;
 
@@ -23,19 +21,20 @@ import javax.validation.constraints.*;
 @Entity
 public class PaymentItemType extends BasePOJO  {
 
-  @OneToOne
+  @OneToOne (cascade = CascadeType.ALL)
   @JsonProperty("amount")
   private MoneyType amount = null;
 
-  @OneToOne
+  @OneToOne (cascade = CascadeType.ALL)
   @JsonProperty("taxAmount")
   private MoneyType taxAmount = null;
 
-  @OneToOne
+  @OneToOne (cascade = CascadeType.ALL)
   @JsonProperty("totalAmount")
   private MoneyType totalAmount = null;
 
-  @OneToOne
+  @Transient
+//  @OneToOne (cascade = CascadeType.ALL, fetch = FetchType.EAGER)
   @JsonProperty("item")
   private EntityRefType item = null;
 
